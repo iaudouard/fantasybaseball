@@ -1,28 +1,9 @@
-enum PositionType {
-    Pitcher,
-    Batter,
-}
+mod models;
 
-enum Position {
-    SS,
-}
-
-struct Player {
-    id: u32,
-    name: String,
-    positions: Vec<Position>,
-}
-
-impl Position {
-    fn position_type(&self) -> PositionType {
-        match self {
-            Position::SS => PositionType::Batter,
-        }
-    }
-}
+use crate::models::Player;
+use crate::models::Position;
 
 fn main() {
-    println!("Hello world");
     let player = Player {
         id: 1,
         name: String::from("Anthony Volpe"),
@@ -30,4 +11,7 @@ fn main() {
     };
 
     println!("Name: {}, ID: {}", player.name, player.id);
+    for position in player.positions.iter() {
+        println!("Plays: {}", position.name());
+    }
 }
